@@ -1,1 +1,2 @@
 web: httextreme
+bash: bash
