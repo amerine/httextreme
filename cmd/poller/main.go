@@ -54,6 +54,6 @@ func main() {
 
 	for {
 		fmt.Printf("Number of goroutines: %d", runtime.NumGoroutine())
-		time.Sleep(2000 * time.Millisecond)
+		time.Sleep(time.Duration((rand.Int31n(5000) + 1)) * time.Millisecond)
 	}
 }
