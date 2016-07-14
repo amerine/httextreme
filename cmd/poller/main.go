@@ -1,8 +1,8 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
+	"io/ioutil"
 	"math/rand"
 	"net"
 	"os"
@@ -44,14 +44,14 @@ func main() {
 
 				fmt.Printf("worker-goroutine.%d at=GET", worker)
 				fmt.Fprintf(conn, "GET / HTTP/1.0\r\n\r\n")
-				status, err := bufio.NewReader(conn).ReadString('\n')
+				all, err := ioutil.ReadAll(conn)
 				fmt.Printf("worker-goroutine.%d at=FinishGET", worker)
 				if err != nil {
 					fmt.Print(err)
 				}
-				fmt.Printf("worker-goroutine.%d target=%s port=%d status=%s", worker, target, port, status)
+				fmt.Printf("worker-goroutine.%d target=%s port=%d status=%s", worker, target, port, all)
 				fmt.Printf("worker-goroutine.%d at=Sleeping", worker)
-				time.Sleep(1000 * time.Millisecond)
+				time.Sleep(2000 * time.Millisecond)
 				fmt.Printf("worker-goroutine.%d at=FinishSleeping", worker)
 			}
 		}(i)
