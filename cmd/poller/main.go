@@ -61,6 +61,6 @@ func main() {
 
 	for {
 		fmt.Printf("Number of goroutings: %d", runtime.NumGoroutine())
-		time.sleep(2000 * time.Millisecond)
+		time.Sleep(2000 * time.Millisecond)
 	}
 }
