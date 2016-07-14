@@ -33,7 +33,7 @@ func main() {
 				if (maxPort - minPort) > 1 {
 					port = rand.Intn(maxPort-minPort) + minPort
 				}
-				conn, err := net.Dial("tcp", fmt.Sprintf("%s:%d", target, port))
+				conn, err := net.DialTimeout("tcp", fmt.Sprintf("%s:%d", target, port), 3*time.Second)
 				if err != nil {
 					fmt.Print(err)
 				}
