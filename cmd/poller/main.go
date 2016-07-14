@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"net"
 	"os"
+	"runtime"
 	"strconv"
 	"time"
 )
@@ -59,5 +60,7 @@ func main() {
 	}
 
 	for {
+		fmt.Printf("Number of goroutings: %d", runtime.NumGoroutine())
+		time.sleep(2000 * time.Millisecond)
 	}
 }
