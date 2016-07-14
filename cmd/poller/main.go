@@ -43,7 +43,7 @@ func main() {
 				if err != nil {
 					fmt.Print(err)
 				}
-				fmt.Printf("worker-goroutine.%d status=%s", worker, status)
+				fmt.Printf("worker-goroutine.%d target=%s port=%d status=%s", worker, target, port, status)
 				time.Sleep(1000 * time.Millisecond)
 			}
 		}(i)
