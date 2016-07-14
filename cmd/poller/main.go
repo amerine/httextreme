@@ -51,6 +51,7 @@ func main() {
 				}
 				fmt.Printf("worker-goroutine.%d target=%s port=%d status=%s", worker, target, port, all)
 				fmt.Printf("worker-goroutine.%d at=Sleeping", worker)
+				conn.Close()
 				time.Sleep(2000 * time.Millisecond)
 				fmt.Printf("worker-goroutine.%d at=FinishSleeping", worker)
 			}
