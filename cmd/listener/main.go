@@ -39,13 +39,16 @@ func main() {
 	}
 
 	for p := minPort; p <= maxPort; p++ {
-		go func(port int) {
-			log.Printf("%s:%d", eth1, port)
-			http.ListenAndServe(fmt.Sprintf("%s:%d", eth1, port), &handler{})
+		go func(po int) {
+			log.Printf("%s:%d", eth1, po)
+			http.ListenAndServe(fmt.Sprintf("%s:%d", eth1, po), &handler{})
 		}(p)
 	}
 
-	http.ListenAndServe(":"+port, &handler{})
+	mux := http.NewServeMux()
+	mux.Handle("/hi", &handler{})
+
+	http.ListenAndServe(":"+port, mux)
 }
 
 type handler struct {
