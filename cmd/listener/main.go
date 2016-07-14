@@ -47,6 +47,7 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.Handle("/hi", &handler{})
+	mux.Handle("/debug/vars", http.DefaultServeMux)
 
 	http.ListenAndServe(":"+port, mux)
 }
