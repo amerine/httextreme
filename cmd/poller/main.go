@@ -41,7 +41,7 @@ func main() {
 				}
 
 				fmt.Fprintf(conn, "GET / HTTP/1.0\r\n\r\n")
-				all, err := ioutil.ReadAll(conn)
+				_, err := ioutil.ReadAll(conn)
 				if err != nil {
 					fmt.Println("Read All Failed", err, target, port)
 				}
