@@ -2,5 +2,8 @@
 	"comment": "",
 	"ignore": "test",
 	"package": [],
-	"rootPath": "github.com/heroku/httextreme"
+	"rootPath": "github.com/heroku/httextreme",
+  "heroku": {
+    "install":["./..."]
+  }
 }
