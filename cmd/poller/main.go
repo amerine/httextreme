@@ -30,6 +30,8 @@ func main() {
 	for i := 0; i < concurrency; i++ {
 		go func(worker int) {
 			for {
+				time.Sleep(time.Duration((rand.Int31n(1000) + 1)) * time.Millisecond)
+
 				port := minPort
 				if (maxPort - minPort) > 1 {
 					port = rand.Intn(maxPort-minPort) + minPort
@@ -38,6 +40,7 @@ func main() {
 				conn, err := net.DialTimeout("tcp", fmt.Sprintf("%s:%d", target, port), 3*time.Second)
 				if err != nil {
 					fmt.Println("Dial Failed", err, target, port)
+					continue
 				}
 
 				fmt.Fprintf(conn, "GET / HTTP/1.0\r\n\r\n")
@@ -47,13 +50,12 @@ func main() {
 				}
 
 				// conn.Close()
-				time.Sleep(2000 * time.Millisecond)
 			}
 		}(i)
 	}
 
 	for {
-		fmt.Printf("Number of goroutines: %d", runtime.NumGoroutine())
-		time.Sleep(time.Duration((rand.Int31n(1000) + 1)) * time.Millisecond)
+		time.Sleep(2000 * time.Millisecond)
+		fmt.Printf("Number of goroutines: %d\n", runtime.NumGoroutine())
 	}
 }
