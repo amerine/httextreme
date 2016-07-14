@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "expvar"
+	"expvar"
 	"fmt"
 	"log"
 	"net"
@@ -11,6 +11,7 @@ import (
 )
 
 var eth1 string
+var counts = expvar.NewMap("counters")
 
 func main() {
 	port := os.Getenv("PORT")
@@ -56,5 +57,6 @@ type handler struct {
 }
 
 func (m *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	counts.Add("hits", 1)
 	w.Write([]byte("Hi"))
 }
